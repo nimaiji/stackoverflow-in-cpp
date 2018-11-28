@@ -8,6 +8,8 @@
 #include "DatabaseCore/xVector.h"
 using namespace std;
 class Answer {
+public:
+    Answer(string text):text(text){};
     xVector<Answer> answers;
     int like;
     string text;

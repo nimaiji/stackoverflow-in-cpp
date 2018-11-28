@@ -9,11 +9,11 @@
 #include "Answer.h"
 class Post {
 public:
-    string title,text;
+    string title,text,author;
     int like;
     xVector<Answer> answers;
     //Todo : time
-    Post(string title,string text):text(text),title(title){};
+    Post(string title,string text,string author):text(text),title(title),author(author){};
 };
 
 

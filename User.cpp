@@ -94,7 +94,7 @@ void User::printAllPosts() {
     int cn = 0;
     for(auto &p:posts){
         cn++;
-        cout<<cn<<". Title:\t"<<p.title<<endl<<"Text:\t"<<p.text<<endl<<endl;
+        cout<<cn<<". Title:\t"<<p.title<<endl<<"Text:\t"<<p.text<<endl<<"Author:\t"<<p.author<<endl<<endl;
     }
 }
 
