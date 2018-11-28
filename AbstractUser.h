@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <string>
 #include <vector>
-#include "logger.h"
+
 
 #define lower(str) transform(str.begin(), str.end(), str.begin(), ::tolower)
 using namespace std;
@@ -20,8 +20,11 @@ public:
     virtual bool authenticate(string username, string password) = 0;
     virtual void deleteAccount() = 0;
     string username;
+	string getEmail(){
+		return email;
+	}
 protected:
-	friend class Logger;
+	//friend class Logger;
     string password;
     string email;
     UserType type;

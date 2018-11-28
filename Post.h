@@ -8,12 +8,11 @@
 #include "DatabaseCore/xVector.h"
 #include "Answer.h"
 class Post {
-private:
+public:
     string title,text;
     int like;
     xVector<Answer> answers;
     //Todo : time
-public:
     Post(string title,string text):text(text){};
 };
 

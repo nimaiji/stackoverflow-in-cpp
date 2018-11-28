@@ -6,7 +6,7 @@
 #define STACKOVERFLOW_IN_CPP_ANSWER_H
 
 #include "DatabaseCore/xVector.h"
-
+using namespace std;
 class Answer {
     xVector<Answer> answers;
     int like;

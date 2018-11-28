@@ -9,7 +9,7 @@
 #include "Exceptions.h"
 #include <iostream>
 #include <fstream>
-
+#include "Post.h"
 
 
 
@@ -84,4 +84,16 @@ void User::init(const string &salt) {
     User::salt = salt;
     users.reserve(20);
     users.emplace_back("admin", "admin", "admin@stackoverflow.com", UserType::ADMIN);
+}
+
+void User::addPost(Post p) {
+    this->posts.push_back(p);
+}
+
+void User::printAllPosts() {
+    int cn = 0;
+    for(auto &p:posts){
+        cn++;
+        cout<<cn<<". Title:\t"<<p.title<<endl<<"Text:\t"<<p.text<<endl<<endl;
+    }
 }

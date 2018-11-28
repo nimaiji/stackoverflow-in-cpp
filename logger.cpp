@@ -1,5 +1,5 @@
 #include <iostream>
-#include "logger.h"
+#include "Logger.h"
 #include <fstream>
 
 Loggers::Loggers() {};
@@ -8,6 +8,8 @@ Loggers* Loggers::instance = NULL;
 int Loggers::count = 0;
 
 Logger::Logger() {};
+
+
 
 Loggers* Logger::getInstance() {
 	if (instance == NULL) {
@@ -24,9 +26,9 @@ Loggers* Logger::getInstance() {
 
 void Logger::Log(User t) {
 	count++;
-	fstream f("Log.txt", ios::trunc | ios::in | ios::out);
-	f.seekg(ios::end);
-	f << t.username << "  " << t.email << endl;
-	f.close();
+//	fstream f("Log.txt", ios::trunc | ios::in | ios::out);
+//	f.seekg(ios::end);
+//	f << t.username << "  " << t.email << endl;
+//	f.close();
 }
 

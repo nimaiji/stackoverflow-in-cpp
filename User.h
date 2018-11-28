@@ -2,8 +2,9 @@
 
 #include <iostream>
 #include "AbstractUser.h"
-#include "DatabaseCore/xVector.h"
+//#include "DatabaseCore/xVector.h"
 #include "Post.h"
+
 
 class User : public AbstractUser {
 public:
@@ -14,6 +15,9 @@ public:
 public:
     void set_password(string password);
     bool check_password(string password);
+    void addPost(Post p);
+    void getAllPosts();
+    void printAllPosts();
 
 public:
     bool authenticate(string username, string password);
