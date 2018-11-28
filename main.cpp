@@ -3,6 +3,7 @@
 #include "AbstractUser.h"
 #include "Exceptions.h"
 #include "User.h"
+#include <iostream>
 #include <fstream>
 //#include "Logger.h"
 
@@ -20,7 +21,7 @@ protected:
     static Loggers *instance;
     static int count;
 public:
-    virtual void Log(User t)=0;
+    virtual void Log(User t){};
 
 };
 
@@ -118,6 +119,7 @@ int main() {
                         }
                         break;
                     }
+
                     case 'e': { // exit
                         menuState = MenuState::END;
                         break;
@@ -130,9 +132,31 @@ int main() {
                 break;
             }
             case MenuState::LOGGED_IN: {
-                cout << "d.delete account\nl. logout\ne. exit\n";
+                cout << "d. delete account\nl. logout\nw. write a question\ns. show all my posts\nx. delete a post by number\ne. exit\n";
                 cin >> choice;
                 switch (choice) {
+                    case 'x':{
+                        int inx;
+                        cout<<"Please insert post number:"<<endl;
+                        cin>>inx;
+                        loggedInUser->dltPost(inx);
+                        break;
+                    }
+                    case 's':{
+                        cout<<"Your posts are:"<<endl;
+                        loggedInUser->printAllPosts();
+                        break;
+                    }
+                    case 'w':{
+                        string title,text;
+                        cout<<"Enter title:\t"<<endl;
+                        cin>>title;
+                        cout<<"Enter text:\t"<<endl;
+                        cin>>text;
+                        Post p(title,text);
+                        loggedInUser->addPost(p);
+                        break;
+                    }
                     case 'd': {
                         try {
                             loggedInUser->deleteAccount();

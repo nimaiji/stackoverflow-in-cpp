@@ -13,7 +13,7 @@ public:
     int like;
     xVector<Answer> answers;
     //Todo : time
-    Post(string title,string text):text(text){};
+    Post(string title,string text):text(text),title(title){};
 };
 
 

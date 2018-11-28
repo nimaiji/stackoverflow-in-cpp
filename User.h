@@ -18,6 +18,7 @@ public:
     void addPost(Post p);
     void getAllPosts();
     void printAllPosts();
+    void dltPost(int index);
 
 public:
     bool authenticate(string username, string password);

@@ -97,3 +97,11 @@ void User::printAllPosts() {
         cout<<cn<<". Title:\t"<<p.title<<endl<<"Text:\t"<<p.text<<endl<<endl;
     }
 }
+
+void User::dltPost(int index) {
+    auto p = posts.begin();
+    for (int i = 0; i < index; ++i) {
+        auto p = posts.begin()++;
+    }
+    posts.erase(p);
+}
