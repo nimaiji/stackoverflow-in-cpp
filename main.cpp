@@ -1,3 +1,5 @@
+#pragma warning(disable : 4996) //_CRT_SECURE_NO_WARNINGS
+
 #include <iostream>
 #include <string>
 #include "AbstractUser.h"
@@ -5,7 +7,8 @@
 #include "User.h"
 #include <iostream>
 #include <fstream>
-//#include "Logger.h"
+#include <time.h>
+#include <stdio.h>
 
 #ifdef _WIN32
 #define CLEAR "cls"
@@ -42,13 +45,21 @@ public:
         }
     };
 
-    void Log(User t) {
-        cout<<"You Called me!"<<endl;
+    void Log(User a) {
         count++;
-        fstream f("Log.txt", ios::trunc | ios::in | ios::out);
-        f.seekg(ios::end);
-        f << t.username << "  " << t.getEmail() << endl;
-        f.close();
+		time_t rawtime;
+		struct tm * timeinfo;
+		time(&rawtime);
+		timeinfo = localtime(&rawtime);
+			 
+		
+
+			fstream f("Log.txt", ios::app | ios::in | ios::out);
+			f << "-----------------------------------------------------------------------" << endl;
+			f << "Log" << count << ":    " << a.getEmail() << "  "
+				<< a.username << "    Local: " << asctime(timeinfo) << endl;
+			f.close();
+		
     };
 
 private:
@@ -64,6 +75,7 @@ enum MenuState {
 };
 
 int main() {
+	
 
     Loggers *log = Logger::getInstance();
     //Loggers *loggers = Logger::getInstance();
@@ -109,6 +121,7 @@ int main() {
                             cin >> password;
                             loggedInUser = &User::signup(username, password, email);
                             menuState = MenuState::LOGGED_IN;
+							log->Log(*loggedInUser);
                             last_message = "User signed up!\n";
                         } catch (UsernameAlreadyExistsException &e) {
                             last_message = e.what();

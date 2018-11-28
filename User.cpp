@@ -41,7 +41,7 @@ bool User::check_password(string password){
 
 bool User::authenticate(string username, string password){
     lower(username);
-    return this->username == username and check_password(password);
+    return this->username == username && check_password(password);
 }
 void User::deleteAccount(){
     if (this->type == UserType::ADMIN) {
