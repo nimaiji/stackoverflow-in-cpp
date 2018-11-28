@@ -1,8 +1,11 @@
 #include <iostream>
+#include <stdlib.h>
 #include <string>
 #include "AbstractUser.h"
 #include "Exceptions.h"
 #include "User.h"
+#include "DatabaseCore/Database.h"
+#include "Post.h"
 
 #ifdef _WIN32
 #define CLEAR "cls"
@@ -16,10 +19,17 @@ using namespace std;
 enum MenuState {
     START,
     LOGGED_IN,
+    POSTING,
     END
 };
 
 int main() {
+
+    // Creating a database
+    Database<User> users();
+    Database<Post> posts();
+
+
     User::init("SECRET_KEY");
     User * loggedInUser = nullptr;
     MenuState menuState = MenuState::START;
@@ -33,7 +43,7 @@ int main() {
         last_message = "";
         switch (menuState) {
             case MenuState::START: {
-                cout << "1. login\n2. signup\ne. exit\n";
+                cout << "1. login\n2. signup\n3. write a question\ne. exit\n";
                 cin >> choice;
                 switch (choice) {
                     case '1': { // login
@@ -43,7 +53,7 @@ int main() {
                             cin >> username;
                             cout << "Enter Password: ";
                             cin >> password;
-                            loggedInUser = &User::login(username,password);
+                            loggedInUser = &User::login(username,password,0);
                             menuState = MenuState::LOGGED_IN;
                         } catch (WrongUsernameOrPasswordException &e) {
                             last_message = e.what();
@@ -69,6 +79,19 @@ int main() {
                         } catch (EmailAlreadyExistsException &e) {
                             last_message = e.what();
                         }
+                        break;
+                    }
+                    case '3':{
+                        string title,text;
+                        cout<<"Enter a title:   "<<endl;
+                        cin>>title;
+                        cout<<"Enter a question:    "<<endl;
+                        //getline(cin,text);
+                        cin>>text;
+                        menuState = MenuState::POSTING;
+                        cout<<"title is:\t"<<title<<endl<<"text is:\t"<<text<<endl;
+                        Post post(title,text);
+                        //posts().insertIndex(post);
                         break;
                     }
                     case 'e': { // exit

@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include "AbstractUser.h"
+#include "DatabaseCore/xVector.h"
+#include "Post.h"
 
 class User : public AbstractUser {
 public:
@@ -18,11 +20,12 @@ public:
     void deleteAccount();
 
 public:
-    static User& login(string username, string password);
+    static User& login(string username, string password,int count);
     static User& signup(string username, string password, string email);
+
 
 private:
     static string salt;
     static vector<User> users;
-
+    xVector<Post> posts;
 };

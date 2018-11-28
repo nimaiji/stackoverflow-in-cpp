@@ -8,6 +8,9 @@
 #include "User.h"
 #include "Exceptions.h"
 #include <iostream>
+#include <fstream>
+
+
 
 
 vector<User> User::users;
@@ -53,9 +56,10 @@ void User::deleteAccount(){
     }
 }
 
-User& User::login(string username, string password){
+User& User::login(string username, string password,int count){
     for (auto &user : users) {
         if(user.authenticate(username, password)) {
+
             return user;
         }
     }
